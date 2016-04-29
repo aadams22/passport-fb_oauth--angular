@@ -1,0 +1,21 @@
+<section id="loginbox" ng-controller="AuthController as authCtrl">
+  <div class="login-container">
+    <h2 class="title">Sign In</h2>
+        <div ng-show="alert" id="login-alert" class="alert alert-danger">{{alert}}</div>
+
+        <form id="loginform" role="form">
+            <input id="login-username" type="text" class="form-control" ng-model="user.email" value="" placeholder=" &#xE800  email"><br/>
+            <input id="login-password" type="password" class="form-control" ng-model="user.password" placeholder=" &#xE802  password">
+
+            <div><a ng-click="login(user)">Login</a></div>
+            <div class="facebook"><a id="btn-fblogin"  href="/login/facebook">Login with Facebook <span>&#xE801</span></a></div>
+
+            <div id="signup"><a ng-href="#/signup">Sign Up Here</a></div>
+        </form>
+  </div>
+</section>
+
+
+<!-- <div class="social-wrap b">
+    <button class="facebook"><a href="/login/facebook">Sign in <em>w/</em> Facebook</a><button>
+</div> -->
