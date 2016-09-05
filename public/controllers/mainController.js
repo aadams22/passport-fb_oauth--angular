@@ -65,14 +65,14 @@ app.controller('AuthController', ['$scope', '$http', '$location', function($scop
 
     //LOGIN REQUEST
     $scope.login = function(user){
-        $http.post('/login', user).
-            success(function(data) {
-                $scope.loggeduser = data;
-                $location.path('/user');
-            }).
-            error(function() {
-                $scope.alert = 'Login failed'
-            });
+      $http.post('/login', user).
+        success(function(data) {
+          $scope.loggeduser = data;
+          $location.path('/user');
+        }).
+        error(function() {
+          $scope.alert = 'Login failed'
+        });
 
     };
 
@@ -83,25 +83,25 @@ app.controller('AuthController', ['$scope', '$http', '$location', function($scop
       if (userValidation(user) == true) {
         console.log("it's saving ", userValidation(user));
         $http.post('/signup', user).
-            success(function(data) {
-                $scope.alert = data.alert;
-             }).
-            error(function() {
-                $scope.alert = 'Registration failed'
-            });
+          success(function(data) {
+            $scope.alert = data.alert;
+           }).
+          error(function() {
+            $scope.alert = 'Registration failed'
+          });
       }
     };
 
     //LOGOUT REQUEST
     $scope.logout = function(){
-        $http.get('/logout')
-            .success(function() {
-                $scope.loggeduser = {};
-                $location.path('/signin');
-            })
-            .error(function() {
-                $scope.alert = 'Logout failed'
-            });
+      $http.get('/logout')
+        .success(function() {
+          $scope.loggeduser = {};
+          $location.path('/signin');
+        })
+        .error(function() {
+          $scope.alert = 'Logout failed'
+        });
     };
 
 }]);
