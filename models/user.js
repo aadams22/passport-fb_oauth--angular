@@ -1,8 +1,6 @@
 var mongoose = require('mongoose');
 var Schema   = mongoose.Schema;
 
-
-
 var userSchema = new Schema({
   _id: {
         type   : String,
@@ -22,7 +20,6 @@ var userSchema = new Schema({
                  refreshToken: { type: String }
                  }
 });
-
 
 var User = mongoose.model('User', userSchema);
 module.exports = User;

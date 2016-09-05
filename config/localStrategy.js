@@ -14,25 +14,22 @@ module.exports = function(app, passport, mongoose) {
   app.use(passport.initialize());
   app.use(passport.session());
 
-
   //Local Strategy authentication
   passport.use(new LocalStrategy(
     function (email, password, done) {
 
-        User.findOne({ email : email }, function (err, user) {
-            if (err) { return done(err); }
+      User.findOne({ email : email }, function (err, user) {
+          if (err) { return done(err); }
 
-            if (!user) return done(null, false, {alert: 'Incorrect email.'});
+          if (!user) return done(null, false, {alert: 'Incorrect email.'});
 
-            if (user.password != password) {
-                return done(null, false, { alert: 'Incorrect password.' });
-            }
-            return done(null, user);
-        });
+          if (user.password != password) {
+            return done(null, false, { alert: 'Incorrect password.' });
+          }
+          return done(null, user);
+      });
     }
-
   ));
-
 
   //LOCAL SIGNUP ROUTE
   app.post('/signup', function(req, res) {
@@ -44,16 +41,13 @@ module.exports = function(app, passport, mongoose) {
       user.lastName  = req.body.lastname;
       user.firstName = req.body.firstname;
 
-
-        user.save(function(err){
-            if (err) {
-                res.json({ 'alert' : 'Registration error' });
-            }else{
-                res.json({ 'alert' : 'Registration success! Please proceed to login.' });
-            }
-        });
-
-
+      user.save(function(err){
+        if (err) {
+          res.json({ 'alert' : 'Registration error' });
+        }else{
+          res.json({ 'alert' : 'Registration success! Please proceed to login.' });
+        }
+      });
 
   });
 
@@ -62,6 +56,5 @@ module.exports = function(app, passport, mongoose) {
     passport.authenticate('local', { failureRedirect: '/' }),
     function(req,res){ res.json(req.user);
   });
-
 
 }
